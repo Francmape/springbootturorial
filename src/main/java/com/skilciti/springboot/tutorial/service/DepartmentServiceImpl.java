@@ -1,12 +1,14 @@
 package com.skilciti.springboot.tutorial.service;
 
 import com.skilciti.springboot.tutorial.entity.Department;
+import com.skilciti.springboot.tutorial.errors.ExceptionNotFound;
 import com.skilciti.springboot.tutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -24,8 +26,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(Long departmentId) {
-        return departmentRepository.findById(departmentId).get();
+    public Department getDepartmentById(Long departmentId) throws ExceptionNotFound {
+
+        Optional<Department> department =  departmentRepository.findById(departmentId);
+        if(!department.isPresent()){
+            throw new ExceptionNotFound("Department not found.");
+        }
+
+        return department.get();
     }
 
     @Override

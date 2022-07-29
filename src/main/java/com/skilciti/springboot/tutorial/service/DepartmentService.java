@@ -1,6 +1,7 @@
 package com.skilciti.springboot.tutorial.service;
 
 import com.skilciti.springboot.tutorial.entity.Department;
+import com.skilciti.springboot.tutorial.errors.ExceptionNotFound;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface DepartmentService {
 
     public List<Department> fetchAllDepartments();
 
-    public Department getDepartmentById(Long departmentId);
+    public Department getDepartmentById(Long departmentId) throws ExceptionNotFound;
 
     public void deleteDepartment(Long departmentId);
 

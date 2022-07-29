@@ -1,6 +1,7 @@
 package com.skilciti.springboot.tutorial.controller;
 
 import com.skilciti.springboot.tutorial.entity.Department;
+import com.skilciti.springboot.tutorial.errors.ExceptionNotFound;
 import com.skilciti.springboot.tutorial.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department getDepartmentById(@PathVariable("id") Long departmentId) {
+    public Department getDepartmentById(@PathVariable("id") Long departmentId) throws ExceptionNotFound {
         LOGGER.info("DepartmentController: getDepartmentById");
         return departmentService.getDepartmentById(departmentId);
     }
