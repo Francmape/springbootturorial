@@ -1,6 +1,31 @@
 server:
   port: 8082
+
 spring:
+  profiles:
+    active: test
+
+---
+spring:
+  profiles: test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/springbootdb-test
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+welcome:
+  message: Welcome to skilciti Ltd.
+
+---
+spring:
+  profiles: prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ''
