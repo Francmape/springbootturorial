@@ -23,6 +23,14 @@ spring:
 welcome:
   message: Welcome to skilciti Ltd.
 
+#Actuators
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
 ---
 spring:
   profiles: prod
